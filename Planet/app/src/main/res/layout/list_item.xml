@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="68dp"
+        android:layout_height="match_parent"
+        android:background="#eecb41"
+        android:padding="10dp"
+        android:src="@drawable/heart" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/txtMission_T"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="큰 제목"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/txtMission_S"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="작은 제목"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Go!"
+            android:textColor="#669966"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
-    android:layout_height="450dp"
-    android:background="#b2a6c7"
+    android:layout_height="500dp"
+    android:background="@drawable/pop1"
     android:orientation="vertical"
     tools:context="com.example.jihu02.planet.JoinActivity">
 
@@ -26,14 +26,13 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="187dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="소행성에 오신걸 환영합니다!"
-        android:textColor="#000000"
+        android:textColor="#111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.247"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +41,13 @@
     <android.support.constraint.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="361dp"
         android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/dd3"
+        android:background="@drawable/inpop"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +59,7 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="112dp"
-            android:layout_height="193dp"
+            android:layout_height="246dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
@@ -113,17 +112,17 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="136dp"
-            android:layout_height="186dp"
+            android:layout_width="198dp"
+            android:layout_height="242dp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.646"
+            app:layout_constraintHorizontal_bias="0.882"
             app:layout_constraintStart_toStartOf="@+id/linearLayout"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.204">
+            app:layout_constraintVertical_bias="0.25">
 
             <EditText
                 android:layout_width="match_parent"
@@ -159,7 +158,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.089" />
 
     </android.support.constraint.ConstraintLayout>
 

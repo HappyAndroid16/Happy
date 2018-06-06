@@ -14,24 +14,26 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
-        android:text="로그인"
-        android:textSize="40dp"
+        android:layout_marginTop="80dp"
+        android:text="내 소행성 찾기"
+        android:textColor="#111"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="290dp"
-        android:layout_height="316dp"
+        android:layout_width="375dp"
+        android:layout_height="384dp"
         android:layout_gravity="center"
         android:layout_marginBottom="72dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/dd3"
+        android:background="@drawable/board2"
         android:orientation="vertical"
         android:padding="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -46,11 +48,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="52dp"
             android:hint="아이디"
-            android:textColor="#000"
             android:textColorLink="#f1c40f"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.316"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,17 +62,17 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="68dp"
+            android:layout_marginTop="8dp"
             android:hint="비밀번호"
             android:textColor="#000"
             android:textColorLink="#f1c40f"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.133"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/inputId" />
 
         <LinearLayout
-            android:layout_width="261dp"
+            android:layout_width="300dp"
             android:layout_height="127dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
@@ -93,7 +95,7 @@
 
             <com.facebook.login.widget.LoginButton
                 android:id="@+id/button_facebook_login"
-                android:layout_width="match_parent"
+                android:layout_width="310dp"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:text="페이스북으로 로그인" />

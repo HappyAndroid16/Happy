@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#b2a6c7"
     android:orientation="vertical"
     tools:context="com.example.jihu02.planet.MainActivity">
@@ -91,12 +91,11 @@
                 android:onClick="onJoinListener"
                 android:text="회원가입" />
 
-            <Button
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/button_facebook_login"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                android:background="#f1c40f"
-                android:onClick="onFacebookListener"
                 android:text="페이스북으로 로그인" />
 
             <Button

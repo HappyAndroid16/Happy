@@ -1,5 +1,6 @@
 package com.example.jihu02.planet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,13 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class TwoFragment extends ListFragment {
+public class TwoFragment extends ListFragment implements View.OnClickListener{
     ListView listView2;
     FoodAdapter foodAdapter;
+    Button buttonPlus;
 
     public TwoFragment() {
 
@@ -24,7 +27,7 @@ public class TwoFragment extends ListFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         listView2 = (ListView) this.getListView().findViewById(android.R.id.list);
-
+        buttonPlus = view.findViewById(R.id.buttonPlus);
         // 어댑터 생성
         foodAdapter = new FoodAdapter();
         // 어댑터 통해서 아이템들을 추가
@@ -46,6 +49,17 @@ public class TwoFragment extends ListFragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button:
+                Intent intent = new Intent(v.getContext(), AddPopUpActivity.class);
+                startActivityForResult(intent,200);
+                break;
+
+        }
     }
 
     class FoodAdapter extends BaseAdapter {

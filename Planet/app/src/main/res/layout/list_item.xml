@@ -24,6 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="큰 제목"
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
             android:textSize="25dp" />
 
         <TextView
@@ -31,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="작은 제목"
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
             android:textSize="15dp" />
 
         <Button
@@ -38,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Go!"
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
             android:textColor="#669966"
             android:textSize="20sp"
             android:textStyle="bold" />

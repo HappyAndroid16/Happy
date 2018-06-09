@@ -11,8 +11,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 
 public class HomeActivity extends AppCompatActivity{
@@ -25,7 +31,9 @@ public class HomeActivity extends AppCompatActivity{
     Animation translateRightAnim;
     LinearLayout page;
     Button slideBtn;
-
+    //String mPhotoUrl;
+    //String mUsername;
+    //FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,7 @@ public class HomeActivity extends AppCompatActivity{
 
         page = (LinearLayout)findViewById(R.id.page);
         slideBtn = findViewById(R.id.slidebtn);
+        //mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         setViewPager();
         setTabLayout();
         setListener();
@@ -46,6 +55,15 @@ public class HomeActivity extends AppCompatActivity{
         translateLeftAnim.setAnimationListener(animListener);
         translateRightAnim.setAnimationListener(animListener);
 
+        //프로필 사진
+        //mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
+        //String photoUrl = mFirebaseUser.getPhotoUrl().toString();
+        //ImageView photoImageView = (ImageView) findViewById(R.id.photo_imageview);
+        //Glide.with(this).load(photoUrl).into(photoImageView);
+
+        //프로필 이름
+        //TextView usernameTextView = (TextView) findViewById(R.id.username_textview);
+        //usernameTextView.setText(mUsername);
     }
     public void onSlideClicked(View view) {
         if (isPageOpen) {
@@ -63,6 +81,13 @@ public class HomeActivity extends AppCompatActivity{
             page.setVisibility(view.VISIBLE);
             page.startAnimation(translateLeftAnim);
         }
+    }
+
+    public void onLogoutListener(View view) {
+        LoginManager.getInstance().logOut();
+        Intent intentm = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intentm);
+        finish();
     }
 
     private class SlidingPageAnimationListener implements Animation.AnimationListener {

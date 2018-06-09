@@ -1,61 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#362c3a"
+    android:background="#f4efe2"
     tools:context="com.example.jihu02.planet.HomeActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/Yellow"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/slidebtn"
+            android:layout_width="45dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/slidebtn"
+            android:onClick="onSlideClicked"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.971"
+            app:layout_constraintStart_toStartOf="@+id/imageView8"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
-        android:layout_width="377dp"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_weight="5"
+>
+
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
+        android:background="#eecb41"
+        android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" >
-
-    </android.support.v4.view.ViewPager>
-
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="386dp"
-        android:layout_height="62dp"
-        android:background="#eecb41"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.7"
-        app:layout_constraintStart_toStartOf="parent">
+        app:tabIndicatorColor="#fff">
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@android:drawable/ic_menu_myplaces"
-            android:text="Home" />
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
+            android:icon="@drawable/heart"
+            android:text="미션" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@android:drawable/ic_menu_edit"
-            android:text="notice board" />
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
+            android:icon="@drawable/m"
+            android:text="나의 우주" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tab3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@android:drawable/sym_action_chat"
-            android:text="talk" />
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
+            android:icon="@drawable/wsx"
+            android:text="나의 행성" />
 
     </android.support.design.widget.TabLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/page"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@color/Yellow"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/page"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onCloseClicked"
+            android:text="닫기" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/user"
+            android:layout_gravity="center_horizontal"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="조윤영"
+                    android:textSize="18sp"
+                    android:gravity="right"
+                    android:fontFamily="@font/the_oegyeinseolmyeongseo"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="님 환영합니다!"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/the_oegyeinseolmyeongseo"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="로그아웃"
+            android:layout_marginTop="400dp"
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"/>
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

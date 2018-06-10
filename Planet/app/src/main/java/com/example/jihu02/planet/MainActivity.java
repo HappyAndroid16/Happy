@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     String name;
     String planet;
 
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     //Log.d(TAG, "sign in");
 
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent,100);
                     finish();
                 }
                 else {
@@ -105,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                 Log.d("TAG", "Facebook Login Error", error);
             }
         });
-
     }
 
     @Override
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     public void onLoginListener(View view) {
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+
         SharedPreferences pref = getSharedPreferences("회원정보", MODE_PRIVATE);
 
         name=pref.getString("이름","");
@@ -140,15 +143,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         if(inputId.getText().toString().equals(pref.getString("아이디", "")))
             if(inputPassword.getText().toString().equals(pref.getString("비밀번호", "")))
-                Toast.makeText(getApplicationContext(),name+"님 "+planet+"에 오신걸 환영합니다",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),name+"님, "+planet+"에 오신걸 환영합니다",Toast.LENGTH_LONG).show();
                 startActivity(intent);
-            }
+
+    }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
-
+        mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
         }
 }

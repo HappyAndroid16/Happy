@@ -16,8 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 public class JoinActivity extends Activity {
 
     EditText name,id,password,myPlanet;
-    //private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    //private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,10 @@ public class JoinActivity extends Activity {
         editor.putString("내행성", myPlanet.getText().toString()+"");
         editor.commit();
 
-        /*databaseReference.child("이름").push().setValue(name.getText().toString());
+        databaseReference.child("이름").push().setValue(name.getText().toString());
         databaseReference.child("아이디").push().setValue(id.getText().toString());
         databaseReference.child("비밀번호").push().setValue(password.getText().toString());
-        databaseReference.child("내행성").push().setValue(myPlanet.getText().toString());*/
-
+        databaseReference.child("내행성").push().setValue(myPlanet.getText().toString()); //데이터 저장
         finish();
     }
 }

@@ -94,7 +94,7 @@
         android:layout_gravity="bottom"
         android:background="@color/Yellow"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/page"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -129,14 +129,24 @@
                     android:textSize="18sp"
                     android:fontFamily="@font/the_oegyeinseolmyeongseo"/>
         </LinearLayout>
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="26dp"
+            android:text="일반 로그아웃"
+            android:onClick="onLogoutClicked"
+            android:background="#16a085"
+            android:layout_marginTop="340dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/the_oegyeinseolmyeongseo"
+            />
         <com.facebook.login.widget.LoginButton
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="center_horizontal"
             android:text="로그아웃"
             android:onClick="onLogoutListener"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/the_oegyeinseolmyeongseo"/>
     </LinearLayout>
 

@@ -1,21 +1,14 @@
 package com.example.jihu02.planet;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -23,21 +16,30 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener{
+
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
+    private DatabaseReference mReference2;
+    private DatabaseReference mReference3;
+    private DatabaseReference mReference4;
+    private ChildEventListener mChild;
 
     FirebaseAuth mFirebaseAuth;
     FirebaseAuth.AuthStateListener mFirebaseAuthListener;
@@ -50,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     String name;
     String planet;
 
-    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = firebaseDatabase.getReference();
+    String sid, spassword;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,18 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
         inputId=findViewById(R.id.inputId);
         inputPassword=findViewById(R.id.inputPassword);
+
+
+        mDatabase= FirebaseDatabase.getInstance();
+        mReference = mDatabase.getReference("아이디");
+        mReference2 = mDatabase.getReference("비밀번호");
+        mReference3 = mDatabase.getReference("이름");
+        mReference4 = mDatabase.getReference("행성");
+
         /*
          * Firebase
          */
+
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -72,8 +83,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                     //Log.d(TAG, "sign in");
 
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivityForResult(intent,100);
-                    finish();
+                    startActivity(intent);
                 }
                 else {
                     //Log.d(TAG, "sign out");
@@ -129,29 +139,72 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     }
 
     public void onJoinListener(View view) {
+
         Intent intent = new Intent(getApplicationContext(),JoinActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,200);
+
     }
 
     public void onLoginListener(View view) {
-        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
 
-        SharedPreferences pref = getSharedPreferences("회원정보", MODE_PRIVATE);
+        sid= inputId.getText().toString().trim();
+        spassword = inputPassword.getText().toString().trim();
 
-        name=pref.getString("이름","");
-        planet=pref.getString("내행성","");
-
-        if(inputId.getText().toString().equals(pref.getString("아이디", "")))
-            if(inputPassword.getText().toString().equals(pref.getString("비밀번호", "")))
-                Toast.makeText(getApplicationContext(),name+"님, "+planet+"에 오신걸 환영합니다",Toast.LENGTH_LONG).show();
-                startActivity(intent);
+        mFirebaseAuth.signInWithEmailAndPassword(sid, spassword)
+                .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(MainActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
     }
+       /* mReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
+
+                while(child.hasNext())
+                {
+                    //찾고자 하는 ID값은 key로 존재하는 값
+                    if(child.next().getKey().equals(inputId.getText().toString()))
+                    {
+                        Toast.makeText(getApplicationContext(),"로그인!",Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(intent);
+                    }
+                    Toast.makeText(getApplicationContext(),"존재하지 않는 아이디입니다.",Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
+        //if(inputId.getText().toString().equals(id)){
+            //if(inputPassword.getText().toString().equals(password)){
+
+                //Toast.makeText(getApplicationContext(),name+"님, "+planet+"에 오신걸 환영합니다",Toast.LENGTH_LONG).show();
+                //startActivity(intent);
+
+            //}
+        //}
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
         super.onActivityResult(requestCode, resultCode, data);
         mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+
         }
 }

@@ -44,16 +44,26 @@ public class JoinActivity extends Activity {
 
     public void onJoin2Listener(View view) {
 
-        sname = name.getText().toString();
-        splanet=myPlanet.getText().toString();
+        SharedPreferences pref = getSharedPreferences("Join", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("이름", name.getText().toString());
+        editor.putString("아이디", id.getText().toString());
+        editor.putString("비밀번호", password.getText().toString());
+        editor.putString("내행성", myPlanet.getText().toString());
+
+        editor.commit();
+
+        finish();
+        //sname = name.getText().toString();
+        //splanet=myPlanet.getText().toString();
 
         //databaseReference.child("이름").push().setValue(sname);
         //databaseReference.child("아이디").push().setValue(sid);
-        databaseReference.child("비밀번호").push().setValue(spassword);
-        databaseReference.child("내행성").push().setValue(splanet); //데이터 저장
+        //databaseReference.child("비밀번호").push().setValue(spassword);
+        //databaseReference.child("내행성").push().setValue(splanet); //데이터 저장
 
 
-        sid=id.getText().toString().trim();
+        /*sid=id.getText().toString().trim();
         spassword=password.getText().toString().trim();
 
         firebaseAuth.createUserWithEmailAndPassword(sid, spassword)
@@ -69,7 +79,7 @@ public class JoinActivity extends Activity {
                             return;
                         }
                     }
-                });
+                });*/
 
     }
 }

@@ -94,7 +94,7 @@
         android:layout_gravity="bottom"
         android:background="@color/Yellow"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@+id/page"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -118,7 +118,7 @@
                     android:id="@+id/username_textview"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:text="조윤영"
+                    android:text=""
                     android:textSize="18sp"
                     android:gravity="right"
                     android:fontFamily="@font/the_oegyeinseolmyeongseo"/>

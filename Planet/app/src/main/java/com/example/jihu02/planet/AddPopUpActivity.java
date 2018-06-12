@@ -31,7 +31,7 @@ public class AddPopUpActivity extends Activity {
 
     public void onPushClicked(View view) {
         str = addTextMission.getText().toString();
-        databaseReference.child("mission").push().setValue(str);
+        databaseReference.child("Mission").push().setValue(str);
         finish();
     }
 }

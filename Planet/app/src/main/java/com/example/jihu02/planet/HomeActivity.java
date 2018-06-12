@@ -1,6 +1,7 @@
 package com.example.jihu02.planet;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -31,6 +32,7 @@ public class HomeActivity extends AppCompatActivity{
     Animation translateRightAnim;
     LinearLayout page;
     Button slideBtn;
+    TextView username_textview;
     //String mPhotoUrl;
     //String mUsername;
     //FirebaseUser mFirebaseUser;
@@ -42,6 +44,8 @@ public class HomeActivity extends AppCompatActivity{
 
         page = (LinearLayout)findViewById(R.id.page);
         slideBtn = findViewById(R.id.slidebtn);
+        username_textview = findViewById(R.id.username_textview);
+
         //mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         setViewPager();
         setTabLayout();
@@ -64,6 +68,10 @@ public class HomeActivity extends AppCompatActivity{
         //프로필 이름
         //TextView usernameTextView = (TextView) findViewById(R.id.username_textview);
         //usernameTextView.setText(mUsername);
+
+        SharedPreferences pref = getSharedPreferences("Join", MODE_PRIVATE);
+        username_textview.setText(pref.getString("이름",""));
+
     }
     public void onSlideClicked(View view) {
         if (isPageOpen) {

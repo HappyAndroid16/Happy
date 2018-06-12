@@ -8,16 +8,35 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class OneFragment extends ListFragment implements View.OnClickListener{
     ListView listView2;
     FoodAdapter foodAdapter;
     Button buttonPlus;
+
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mReference;
+    private ChildEventListener mChild;
+
+    private ListView listView;
+    private ArrayAdapter<String> adapter;
+    List<Object> Array = new ArrayList<Object>();
+
     public OneFragment(){
 
     }
@@ -27,20 +46,79 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
 
         listView2 = (ListView) this.getListView().findViewById(android.R.id.list);
         buttonPlus = view.findViewById(R.id.buttonPlus);
+        initDatabase();
         // 어댑터 생성
         foodAdapter = new FoodAdapter();
         // 어댑터 통해서 아이템들을 추가
-        foodAdapter.addItem(new ListItem("국문학과 남**", "기숙사 A동에서 치킨 같이 드실분", 0));
-        foodAdapter.addItem(new ListItem("컴퓨터공학과 조**", "정문에서 고양이 본 썰 푼다", 1));
-        foodAdapter.addItem(new ListItem("통계학과 이**", "집에서 구운 수제쿠키 무나해요", 2));
-        foodAdapter.addItem(new ListItem("사회학과 김**", "역에서 택시 같이 타실분", 3));
-        foodAdapter.addItem(new ListItem("문화인류학과 최**", "사회학과 김ㅈㅅ 남자친구 있나요", 4));
+        foodAdapter.addItem(new ListItem("과자 3개 연속으로 먹기", "", 0));
         // 리스트뷰에 어댑터 설정
         listView2.setAdapter(foodAdapter);
         foodAdapter.notifyDataSetChanged();
         view.findViewById(R.id.buttonPlus).setOnClickListener(this);
+
+        mReference = mDatabase.getReference("Mission");
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //adapter.clear();
+
+                for(DataSnapshot messageData : dataSnapshot.getChildren()){
+                    String str = messageData.getValue().toString();
+                    Array.add(str);
+                    foodAdapter.addItem(new ListItem(str,"",5));
+                }
+                foodAdapter.notifyDataSetChanged();
+                listView2.setSelection(foodAdapter.getCount()-1);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
+    private void initDatabase() {
+
+        mDatabase = FirebaseDatabase.getInstance();
+
+        mReference = mDatabase.getReference("log");
+        mReference.child("log").setValue("check");
+
+        mChild = new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mReference.addChildEventListener(mChild);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mReference.removeEventListener(mChild);
+    }
     @Nullable
 
     @Override

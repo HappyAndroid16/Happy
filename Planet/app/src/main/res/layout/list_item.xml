@@ -36,10 +36,12 @@
             android:textSize="15dp" />
 
         <Button
+            android:id="@+id/GoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:text="Go!"
+            android:onClick="onGoListener"
             android:fontFamily="@font/the_oegyeinseolmyeongseo"
             android:textColor="#16a085"
             android:textSize="20sp"

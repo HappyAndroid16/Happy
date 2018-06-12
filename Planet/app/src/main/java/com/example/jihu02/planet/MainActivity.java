@@ -1,6 +1,7 @@
 package com.example.jihu02.planet;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -147,10 +148,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
     public void onLoginListener(View view) {
 
-        sid= inputId.getText().toString().trim();
-        spassword = inputPassword.getText().toString().trim();
 
-        mFirebaseAuth.signInWithEmailAndPassword(sid, spassword)
+        SharedPreferences pref = getSharedPreferences("Join", MODE_PRIVATE);
+        if(inputId.getText().toString().equals(pref.getString("아이디",""))){
+            if(inputPassword.getText().toString().equals(pref.getString("비밀번호",""))){
+                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                startActivityForResult(intent,101);
+            }
+        }
+        else
+            Toast.makeText(this,"아이디와 비밀번호가 일치하지 않습니다",Toast.LENGTH_LONG).show();
+
+        //sid= inputId.getText().toString().trim();
+        //spassword = inputPassword.getText().toString().trim();
+
+        /*mFirebaseAuth.signInWithEmailAndPassword(sid, spassword)
                 .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -161,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
                             Toast.makeText(MainActivity.this, "로그인 오류", Toast.LENGTH_SHORT).show();
                         }
                     }
-                });
+                });*/
 
     }
        /* mReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -189,15 +201,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
 
             }
         });*/
-
-        //if(inputId.getText().toString().equals(id)){
-            //if(inputPassword.getText().toString().equals(password)){
-
-                //Toast.makeText(getApplicationContext(),name+"님, "+planet+"에 오신걸 환영합니다",Toast.LENGTH_LONG).show();
-                //startActivity(intent);
-
-            //}
-        //}
 
 
     @Override

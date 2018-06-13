@@ -27,13 +27,18 @@ import java.util.List;
 public class OneFragment extends ListFragment implements View.OnClickListener{
     ListView listView2;
     FoodAdapter foodAdapter;
-    Button buttonPlus;
+    Button buttonPlus,buttonGo;
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private ChildEventListener mChild;
 
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
+
     private ListView listView;
+    String str;
     private ArrayAdapter<String> adapter;
     List<Object> Array = new ArrayList<Object>();
 
@@ -54,6 +59,7 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
         // 리스트뷰에 어댑터 설정
         listView2.setAdapter(foodAdapter);
         foodAdapter.notifyDataSetChanged();
+
         view.findViewById(R.id.buttonPlus).setOnClickListener(this);
 
         mReference = mDatabase.getReference("Mission");
@@ -76,6 +82,8 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
 
             }
         });
+
+
     }
 
     private void initDatabase() {
@@ -162,10 +170,34 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
         public View getView(int position, View convertView, ViewGroup parent) {
             listItemView view = new listItemView(getContext());
 
+            buttonGo = (Button)view.findViewById(R.id.GoButton);
+
+            buttonGo.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+
+                    //이 부분이 리스트뷰에서 값을 가져오는 부분임!!!! 이것만 하면 끝
+
+                   // final int position = (Integer)view.getTag();
+                   // ListItem Gomission = items.get(position);
+                   // String strGomission = Gomission.getText();
+
+
+                    str = "집 앞에서 친구와 맥주 한잔 하기";
+                    databaseReference.child("Mission2").push().setValue(str);
+
+                    //Bundle bundle = new Bundle();
+                    //bundle.putString("pushMission",strGomission);
+                }
+
+            });
+
             ListItem item = items.get(position);
             view.setTextMission(item.getText());
             view.setTextMissions(item.getStext());
             return view;
         }
+
+
     }
 }

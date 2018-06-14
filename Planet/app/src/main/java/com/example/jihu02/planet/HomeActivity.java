@@ -101,8 +101,7 @@ public class HomeActivity extends AppCompatActivity{
     }
 
     public void onLogoutClicked(View view) {
-        Intent intent= new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     private class SlidingPageAnimationListener implements Animation.AnimationListener {

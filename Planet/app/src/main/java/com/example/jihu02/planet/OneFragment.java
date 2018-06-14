@@ -60,7 +60,7 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
         // 어댑터 생성
         foodAdapter = new FoodAdapter();
         // 어댑터 통해서 아이템들을 추가
-        foodAdapter.addItem(new ListItem("과자 3개 연속으로 먹기", "", 0));
+        //foodAdapter.addItem(new ListItem("과자 3개 연속으로 먹기", "", 0));
         // 리스트뷰에 어댑터 설정
         listView2.setAdapter(foodAdapter);
         foodAdapter.notifyDataSetChanged();

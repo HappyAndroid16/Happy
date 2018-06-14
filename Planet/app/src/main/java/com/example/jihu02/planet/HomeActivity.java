@@ -46,6 +46,9 @@ public class HomeActivity extends AppCompatActivity{
         slideBtn = findViewById(R.id.slidebtn);
         username_textview = findViewById(R.id.username_textview);
 
+        SharedPreferences pref = getSharedPreferences("Join", MODE_PRIVATE);
+        username_textview.setText(pref.getString("이름",""));
+
         //mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         setViewPager();
         setTabLayout();
@@ -69,8 +72,7 @@ public class HomeActivity extends AppCompatActivity{
         //TextView usernameTextView = (TextView) findViewById(R.id.username_textview);
         //usernameTextView.setText(mUsername);
 
-        SharedPreferences pref = getSharedPreferences("Join", MODE_PRIVATE);
-        username_textview.setText(pref.getString("이름",""));
+
 
     }
     public void onSlideClicked(View view) {

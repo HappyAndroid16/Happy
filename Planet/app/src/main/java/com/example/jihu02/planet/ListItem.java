@@ -1,9 +1,12 @@
 package com.example.jihu02.planet;
 
+import android.widget.Button;
+
 public class ListItem {
     String text;
     String stext;
     int resId;
+
     public ListItem(String text, String stext, int resId) {
         this.text = text;
         this.stext = stext;

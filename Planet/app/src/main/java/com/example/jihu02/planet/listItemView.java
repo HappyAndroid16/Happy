@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ public class listItemView extends LinearLayout{
     ImageView imageView;
     TextView  textMission;
     TextView  textMissions;
+    //Button go;
 
     public listItemView(Context context) {
         super(context);
@@ -31,6 +33,8 @@ public class listItemView extends LinearLayout{
 
         textMission = (TextView)findViewById(R.id.txtMission_T);
         textMissions = (TextView)findViewById(R.id.txtMission_S);
+        //go = (Button)findViewById(R.id.GoButton);
+        //go.setVisibility(GONE);
     }
 
 

@@ -8,11 +8,14 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,19 +24,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class OneFragment extends ListFragment implements View.OnClickListener{
     ListView listView2;
     FoodAdapter foodAdapter;
-    Button buttonPlus;
+    Button buttonPlus,buttonGo;
 
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private ChildEventListener mChild;
 
-    private ListView listView;
+
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+
+    String str;
     private ArrayAdapter<String> adapter;
     List<Object> Array = new ArrayList<Object>();
 
@@ -54,6 +64,7 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
         // 리스트뷰에 어댑터 설정
         listView2.setAdapter(foodAdapter);
         foodAdapter.notifyDataSetChanged();
+
         view.findViewById(R.id.buttonPlus).setOnClickListener(this);
 
         mReference = mDatabase.getReference("Mission");
@@ -76,6 +87,7 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
 
             }
         });
+
     }
 
     private void initDatabase() {
@@ -136,6 +148,7 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
         }
     }
 
+
     class FoodAdapter extends BaseAdapter {
         ArrayList<ListItem> items = new ArrayList<ListItem>();
 
@@ -162,10 +175,43 @@ public class OneFragment extends ListFragment implements View.OnClickListener{
         public View getView(int position, View convertView, ViewGroup parent) {
             listItemView view = new listItemView(getContext());
 
+            buttonGo = (Button)view.findViewById(R.id.GoButton);
+
+            buttonGo.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+
+                    //************************
+
+                    View oParentView = (View)view.getParent();
+                    TextView oTextTitle = (TextView)oParentView.findViewById(R.id.txtMission_T);
+                    String position = (String)oParentView.getTag();
+
+                    Toast.makeText(getContext(),""+position+" "+oTextTitle.getText(),Toast.LENGTH_LONG).show();
+
+                    String gomission = oTextTitle.getText().toString();
+                    databaseReference.child("Mission2").push().setValue(gomission);
+
+                    /*int position = (Integer)view.getTag();
+                    ListItem Gomission = items.get(position);
+                    String strGomission = Gomission.getText();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("pushMission",strGomission);*/
+
+
+
+                }
+
+
+            });
+
             ListItem item = items.get(position);
             view.setTextMission(item.getText());
             view.setTextMissions(item.getStext());
             return view;
         }
+
+
     }
 }

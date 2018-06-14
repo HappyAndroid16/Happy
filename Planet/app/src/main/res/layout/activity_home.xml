@@ -99,10 +99,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:onClick="onCloseClicked"
-            android:text="닫기" />
+            android:background="@drawable/gobb" />
 
         <ImageView
             android:id="@+id/photo_imageview"
@@ -118,8 +118,8 @@
                     android:id="@+id/username_textview"
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="18sp"
+                    android:text="행성지킴이"
+                    android:textSize="15sp"
                     android:gravity="right"
                     android:fontFamily="@font/the_oegyeinseolmyeongseo"/>
                 <TextView

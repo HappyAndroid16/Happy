@@ -40,13 +40,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Go!"
-            android:onClick="onGoListener"
             android:fontFamily="@font/the_oegyeinseolmyeongseo"
+            android:text="Go!"
             android:textColor="#16a085"
             android:textSize="20sp"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
     </LinearLayout>
 </LinearLayout>

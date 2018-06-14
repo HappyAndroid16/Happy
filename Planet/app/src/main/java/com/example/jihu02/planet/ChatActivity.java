@@ -37,7 +37,7 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         initValues();
     }
     private void initValues(){
-        userName = "Guest"+new Random().nextInt(5000);
+        userName = "행성지킴이"+new Random().nextInt(5000);
     }
 
     private void initView() {

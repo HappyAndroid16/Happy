@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#362c3a"
+    android:background="#eecb41"
     tools:context="com.example.jihu02.planet.IntroActivity">
 
 
